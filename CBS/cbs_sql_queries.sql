@@ -28,6 +28,8 @@ updatedby varchar(150),
 isactive boolean
 );
 
+create index idx_customer_custid on customer(custid);
+
 select * from customer;
 
 create table account (
@@ -88,4 +90,6 @@ isactive boolean
 );
 
 select * from employee;
+
+
 
