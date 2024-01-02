@@ -28,8 +28,6 @@ updatedby varchar(150),
 isactive boolean
 );
 
-create index idx_customer_custid on customer(custid);
-
 select * from customer;
 
 create table account (
@@ -52,10 +50,6 @@ closedby varchar(150),
 last_tx_date datetime,
 isactive boolean
 );
-
-create index idx_account_accountno on account(accountno);
-
-create index idx_account_custid on account(custid);
 
 select * from account;
 
@@ -95,5 +89,6 @@ isactive boolean
 
 select * from employee;
 
+create user cbs_user identified by 'root';
 
-
+grant select on * to cbs_user;
