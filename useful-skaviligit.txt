@@ -36,3 +36,7 @@ git remote rename origin old-origin
 git remote add origin https://gitlab.stackroute.in/suresh.kavili/elsevier-frontend.git
 git push -u origin --all
 git push -u origin --tags
+
+
+git branch -f cbs_saiteja
+git checkout cbs_saiteja
