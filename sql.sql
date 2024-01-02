@@ -203,6 +203,81 @@ select balance from account  where id in (1,2);
 rollback to id2sp;
 select balance from account  where id in (1,2);
 
+SELECT * FROM world.countrylanguage where countrycode not in (select code from country);
+
+SELECT * FROM world.country where code  in (select countrycode from countrylanguage);
+
+SELECT * FROM world.country where  exists (select 1 from countrylanguage l where l.countrycode=country.code);
+
+select c.name, count(*) cnt from country c, countrylanguage l where c.code=l.countrycode group by c.name order by cnt desc limit 1;
+
+select c.name from (select c.name, count(*) cnt from country c, countrylanguage l where c.code=l.countrycode group by c.name having cnt=
+(select b.cnt from (
+select c.name, count(*) cnt from country c, countrylanguage l where c.code=l.countrycode group by c.name order by cnt desc limit 1) b))c ;
+
+
+select c.name from (select c.name, count(*) cnt from country c, countrylanguage l where c.code=l.countrycode group by c.name having cnt=
+(select cc.cnt from (
+select distinct b.cnt from (
+select c.name, count(*) cnt from country c, countrylanguage l where c.code=l.countrycode group by c.name order by cnt desc) b
+limit 5
+) cc order by cc.cnt limit 1 ))c ;
+
+
+
+select 
+c.name 
+from ( select 
+            c.name, 
+	   count(*) cnt 
+	   from country c, 
+	        countrylanguage l 
+	   where c.code=l.countrycode 
+	   group by c.name 
+	   having cnt=
+                  (select 
+				        cc.cnt 
+				   from (
+                             select 
+							       distinct b.cnt 
+							 from (
+                                    select 
+									     c.name, 
+									count(*) cnt 
+									from country c, 
+									     countrylanguage l 
+									where 
+									c.code=l.countrycode 
+									group by c.name 
+									order by cnt desc) b
+                              limit 4,1
+                        ) cc  
+					)
+	)c ;
+
+
+with cte as (select 1 as cnt) 
+select cte.cnt from cte;
+
+
+with cte as (select 1 as cnt) ,
+ cte1 as (select 2 as cnt1) 
+select cte1.cnt1 from cte1;
+
+
+with cte as (select 1 as cnt) ,
+ cte1 as (select 2 as cnt1) 
+select cte.cnt,cte1.cnt1 from cte,cte1;
+
+
+with cte1 as (select distinct b.cnt from (
+select c.name, count(*) cnt from country c, countrylanguage l where c.code=l.countrycode group by c.name order by cnt desc) b
+limit 4,1) ,
+
+ cte2 as (select c.name, count(*) cnt from country c, countrylanguage l where c.code=l.countrycode group by c.name) 
+ 
+select cte2.name from cte1,cte2 where cte1.cnt=cte2.cnt;
+
 
 
 
