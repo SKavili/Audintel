@@ -26,4 +26,3 @@ create table order_details(order_id int,item_name varchar(20),quantity int,price
 
 
 
-
