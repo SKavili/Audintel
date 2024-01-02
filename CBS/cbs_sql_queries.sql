@@ -75,6 +75,9 @@ create table transaction(
 );
 
 select * from transaction;
+create index idx_transaction_tx_ref_no on transaction(tx_ref_no);
+create index idx_transaction_accountno on transaction(accountno);
+
 
 create table employee(
 id integer(10) primary key auto_increment,
@@ -92,6 +95,7 @@ updatedat datetime,
 updatedby varchar(150),
 isactive boolean
 );
+create index idx_employee_empid on employee(empid);
 
 select * from employee;
 
