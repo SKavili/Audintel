@@ -53,6 +53,10 @@ last_tx_date datetime,
 isactive boolean
 );
 
+create index idx_account_accountno on account(accountno);
+
+create index idx_account_custid on account(custid);
+
 select * from account;
 
 create table transaction(
