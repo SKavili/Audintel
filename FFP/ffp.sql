@@ -25,3 +25,4 @@ create table order_details(order_id int,item_name varchar(20),quantity int,price
 
 create index idx_memberid on member(member_id);
 
+ALTER TABLE member modify COLUMN phno varchar(40);
