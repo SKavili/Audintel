@@ -40,3 +40,5 @@ git push -u origin --tags
 
 git branch -f cbs_saiteja
 git checkout cbs_saiteja
+
+git log --format=%B  
