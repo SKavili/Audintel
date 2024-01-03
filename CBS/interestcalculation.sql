@@ -8,10 +8,10 @@ DECLARE interest float default 0;
 DECLARE rate float;
 declare bal float;
 set rate = 6;
-set bal = (select tx.balance from transaction tx where tx.accountno=accno and day(tx.tx_at)= day(currentdate) order by tx.tx_at limit 1);
+set bal = (select tx.balance from transaction tx where tx.accountno=accno and tx.tx_at < currentdate order by tx.tx_at desc limit 1);
 set interest = (bal*rate)/(12000);
-insert into transaction(tx_ref_no,accountno,type,amount,balance,tx_at,tx_from,tx_to,tx_mode,tx_status,interestamount)
-values ("tx_ref_1",accno,'credit',interest,bal+interest,currentdate,'system',accno,'online','success',interest);
+-- insert into transaction(tx_ref_no,accountno,type,amount,balance,tx_at,tx_from,tx_to,tx_mode,tx_status,interestamount)
+-- values ("tx_ref_1",accno,'credit',interest,bal+interest,currentdate,'system',accno,'online','success',interest);
 return interest;
 end$$
 delimiter ;
