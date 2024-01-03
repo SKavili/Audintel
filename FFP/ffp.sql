@@ -23,5 +23,5 @@ foreign key(store_id) references store(store_id),foreign key(member_id) referenc
 
 create table order_details(order_id int,item_name varchar(20),quantity int,price int,date date);
 
-
+create index idx_memberid on member(member_id);
 
