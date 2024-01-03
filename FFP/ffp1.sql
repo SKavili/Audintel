@@ -23,9 +23,17 @@ foreign key(store_id) references store(store_id),foreign key(member_id) referenc
 
 create table order_details(order_id int,item_name varchar(20),quantity int,price int,date date);
 
+<<<<<<< HEAD
 create user dbffp_user;
 
 Grant ALL on FFP to dbffp_user;
+=======
+create user ffp_user;
+
+Grant ALL on FFP to ffp_user;
+
+create index idx_memberid on member(member_id);
+>>>>>>> ffp
 
 
 
