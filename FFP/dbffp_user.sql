@@ -45,6 +45,22 @@ BEGIN
 END //
 DELIMITER ;
 
+DELIMITER //
+
+
+Drop trigger if exists AftertravelInfoInsert;
+DELIMITER //
+
+CREATE TRIGGER AfterTravelInfoInsert
+After INSERT
+ON travel_info FOR EACH ROW
+BEGIN
+    CALL CalculatePointsForTicket(NEW.ticket_id);
+END;
+
+//
+DELIMITER ;
+
 
 
 
