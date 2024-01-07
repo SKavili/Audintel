@@ -28,3 +28,6 @@ create index idx_memberid on member(member_id);
 ALTER TABLE member modify COLUMN phno varchar(40);
 ALTER TABLE store modify COLUMN store_name varchar(40);
 ALTER TABLE order_details modify COLUMN item_name varchar(60);
+ALTER TABLE travel_info DROP COLUMN points;
+Create table points(member_id int,ticket_id int,points int);
+truncate table points;
