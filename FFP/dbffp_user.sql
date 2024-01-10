@@ -69,5 +69,6 @@ DELIMITER ;
 
 
 select * from points;
+create table level
 
 
