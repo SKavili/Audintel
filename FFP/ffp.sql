@@ -11,17 +11,24 @@ foreign key(member_id) references member(member_id),foreign key(dest_id) referen
 create table store(store_id int primary key,store_name int);
 create table Ordert(order_id int primary key,store_id int,member_id int,cost int,date date,status boolean,
 foreign key(store_id) references store(store_id),foreign key(member_id) references member(member_id));
-create table order_details(order_id int,item_name varchar(20),quantity int,price int,date date);
+create table order_details(id int auto_increment primary key,order_id int,item_name varchar(20),
+quantity int,price int,date date,foreign key(order_id) references ordert(order_id));
 create index idx_memberid on member(member_id);
 ALTER TABLE member modify COLUMN phno varchar(40);
 ALTER TABLE store modify COLUMN store_name varchar(40);
 ALTER TABLE order_details modify COLUMN item_name varchar(60);
 ALTER TABLE travel_info DROP COLUMN points;
 Create table points(member_id int,ticket_id int,points int);
-create table total_distance(id int primary key,total_distance long,code int default 0,
-foreign key(id) references member(member_id));
+create table total_distance(id int auto_increment key,total_distance long,code int default 0, member_id int,
+foreign key(member_id) references member(member_id));
 ALTER TABLE travel_info
 ADD COLUMN total_members int CHECK(total_members<=6);
 ALTER TABLE travel_info
-ADD COLUMN person_travelling boolean;
+modify COLUMN date datetime;
+ALTER TABLE points
+ADD COLUMN points_id int primary key;
+ALTER TABLE points
+MODIFY COLUMN points_id int auto_increment primary key;
+Drop table total_distance;
+
 
