@@ -25,7 +25,7 @@ BEGIN
         SET calculated_points = total_persons * Distance / 10;
     END IF;
 
-    INSERT INTO points (member_id, ticket_id, points)
+    INSERT INTO points (points_id,member_id, ticket_id, points)
     VALUES (NEW.member_id, NEW.ticket_id, calculated_points);
     UPDATE member
     SET points = points + calculated_points

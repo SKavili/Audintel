@@ -1,7 +1,7 @@
 create user dbffp_user;
 
 Grant ALL on FFP to dbffp_user;
-SET SQL_SAFE_UPDATES = 0;
+SET SQL_SAFE_UPDATES = 1;
 
 select * from travel_info;
 INSERT INTO travel_info (member_id, ticket_id, dest_id, date,total_members,person_travelling)
